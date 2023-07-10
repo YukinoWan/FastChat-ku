@@ -6,6 +6,7 @@ python3 gen_model_answer.py --model-path lmsys/fastchat-t5-3b-v1.0 --model-id fa
 import argparse
 import json
 import os
+os.environ["CUDA_VISIBLE_DEVICES"]="1"
 import random
 import time
 
@@ -192,6 +193,7 @@ if __name__ == "__main__":
         "--question-end", type=int, help="A debug option. The end index of questions."
     )
     parser.add_argument("--answer-file", type=str, help="The output answer file.")
+    parser.add_argument("--question_file", type=str, help="The output answer file.")
     parser.add_argument(
         "--max-new-token",
         type=int,
@@ -224,10 +226,12 @@ if __name__ == "__main__":
         import ray
 
         ray.init()
-
-    question_file = f"data/{args.bench_name}/question.jsonl"
+    if args.question_file:
+        question_file = args.question_file
+    else:
+        question_file = f"data/{args.bench_name}/question.jsonl"
     if args.answer_file:
-        answer_file = args.answer_file
+        answer_file = f"{args.answer_file}/{args.model_id}.jsonl"
     else:
         answer_file = f"data/{args.bench_name}/model_answer/{args.model_id}.jsonl"
 

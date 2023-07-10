@@ -49,6 +49,7 @@ def display_result_pairwise(args):
         df_all["model_1"].unique().tolist() + df_all["model_2"].unique().tolist()
     )
     model_list = list(set(model_list))
+    print(args.model_list)
 
     list_res = []
     # traverse df row by row
@@ -96,7 +97,7 @@ if __name__ == "__main__":
     parser.add_argument("--judge-model", type=str, default="gpt-4")
     parser.add_argument("--baseline-model", type=str, default="gpt-3.5-turbo")
     parser.add_argument(
-        "--model-list",
+        "--model_list",
         type=str,
         nargs="+",
         default=None,
