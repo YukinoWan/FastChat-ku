@@ -11,7 +11,7 @@ import argparse
 
 import torch
 from peft import PeftModel
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import LlamaTokenizer, AutoTokenizer, AutoModelForCausalLM
 
 
 def apply_lora(base_model_path, target_model_path, lora_path):
@@ -19,7 +19,7 @@ def apply_lora(base_model_path, target_model_path, lora_path):
     base = AutoModelForCausalLM.from_pretrained(
         base_model_path, torch_dtype=torch.float16, low_cpu_mem_usage=True
     )
-    base_tokenizer = AutoTokenizer.from_pretrained(base_model_path, use_fast=False)
+    base_tokenizer = LlamaTokenizer.from_pretrained(base_model_path, use_fast=False)
 
     print(f"Loading the LoRA adapter from {lora_path}")
 
