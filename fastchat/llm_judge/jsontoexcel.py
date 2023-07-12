@@ -37,7 +37,7 @@ if __name__ == "__main__":
     model_id = sys.argv[2]
     output_file = sys.argv[3]
 
-    answer_file = "/home/zhen/FastChat-ku/fastchat/llm_judge/data/lima_test/model_answer/{}.jsonl".format(model_id)
+    answer_file = "/home/zhen/FastChat-ku/fastchat/llm_judge/data/vicuna_bench/model_answer/{}.jsonl".format(model_id)
     with open(question_file, "r") as f:
         q_data = f.read().splitlines()
 
